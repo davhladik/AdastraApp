@@ -2,18 +2,19 @@ package com.example.android.adastraapp.screens.overview
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.android.adastraapp.database.Boosters
+import com.example.android.adastraapp.database.RocketDatabaseDao
 import com.example.android.adastraapp.network.SpaceApi
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class OverviewViewModel( application: Application) : AndroidViewModel(application){
+class OverviewViewModel(val database: RocketDatabaseDao, application: Application) : AndroidViewModel(application){
 
     private val context = getApplication<Application>().applicationContext
-
 
 
     private val _flag = MutableLiveData<Boolean>()
@@ -24,9 +25,6 @@ class OverviewViewModel( application: Application) : AndroidViewModel(applicatio
     val navigateToItemDetail
         get() = _navigateToItemDetail
 
-    private val _response = MutableLiveData<String>()
-    val response
-        get() = _response
 
     private val _properties = MutableLiveData<List<Boosters>>()
     val properties : LiveData<List<Boosters>>
@@ -39,7 +37,7 @@ class OverviewViewModel( application: Application) : AndroidViewModel(applicatio
 
 
 
-    val listOfRecipes = MutableLiveData<List<Boosters>>()
+    val listOfBoosters = MutableLiveData<List<Boosters>>()
 
 
     /**
@@ -52,7 +50,7 @@ class OverviewViewModel( application: Application) : AndroidViewModel(applicatio
     init {
         getRecipeProperties()
 
-//        initializeThis()
+        initializeThis()
 
     }
 
@@ -68,10 +66,10 @@ class OverviewViewModel( application: Application) : AndroidViewModel(applicatio
                 val listResult = getPropertiesDeferred.await()
 
                 Log.i("chci",listResult.size.toString())
-//                insertAll(listResult)
-//                _flag.value=true
+                insertAll(listResult)
+                _flag.value=true
 
-                _properties.value = listResult
+//                _properties.value = listResult
             } catch (e: Exception) {
                 Log.i("chci","error")
                 _properties.value = ArrayList()
@@ -97,36 +95,36 @@ class OverviewViewModel( application: Application) : AndroidViewModel(applicatio
      * Database functions
      */
 
-//    fun initializeThis() {
-//        coroutineScope.launch {
-//            listOfRecipes.value = getAllBoosters()
-//        }
-//    }
+    fun initializeThis() {
+        coroutineScope.launch {
+            listOfBoosters.value = getAllBoosters()
+        }
+    }
 
-//    private suspend fun insertAll(recipe: List<Boosters>) {
-//        withContext(Dispatchers.IO) {
-//            database.insertAll(recipe)
-//        }
-//    }
-//
-//    private suspend fun getAllBoosters(): List<Boosters>? {
-//        return withContext(Dispatchers.IO) {
-//            var allRecipes = database.getAllBoosters()
-////            val dbReadyCheck = allRecipes.isEmpty()
-////            Log.i("chci",allRecipes.size.toString())
-////            Log.i("chci",dbReadyCheck.toString())
-////            if (dbReadyCheck){
-////                allRecipes = emptyList()
-////            }
-//            allRecipes
-//        }
-//    }
-//
-//    private suspend fun clear() {
-//        withContext(Dispatchers.IO) {
-//            database.clear()
-//        }
-//    }
+    private suspend fun insertAll(recipe: List<Boosters>) {
+        withContext(Dispatchers.IO) {
+            database.insertAll(recipe)
+        }
+    }
+
+    private suspend fun getAllBoosters(): List<Boosters>? {
+        return withContext(Dispatchers.IO) {
+            var allRecipes = database.getAllBoosters()
+            val dbReadyCheck = allRecipes.isEmpty()
+            Log.i("chci",allRecipes.size.toString())
+            Log.i("chci",dbReadyCheck.toString())
+            if (dbReadyCheck){
+                allRecipes = emptyList()
+            }
+            allRecipes
+        }
+    }
+
+    private suspend fun clear() {
+        withContext(Dispatchers.IO) {
+            database.clear()
+        }
+    }
 
 
 
@@ -150,18 +148,18 @@ class OverviewViewModel( application: Application) : AndroidViewModel(applicatio
         viewModelJob.cancel()
     }
 
-//    fun onClear() {
-//        coroutineScope.launch {
-//            // Clear the database table.
-//            clear()
-//            Toast.makeText(context, "All data deleted!", Toast.LENGTH_SHORT).show()
-//
-//        }
-//    }
+    fun onClear() {
+        coroutineScope.launch {
+            // Clear the database table.
+            clear()
+            Toast.makeText(context, "All data deleted!", Toast.LENGTH_SHORT).show()
 
-//    fun wantToDeleteAll(){
-//        onClear()
-//    }
+        }
+    }
+
+    fun wantToDeleteAll(){
+        onClear()
+    }
 
 
 }

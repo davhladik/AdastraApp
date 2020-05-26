@@ -11,8 +11,6 @@ import com.example.android.adastraapp.databinding.ItemListBinding
 class SpaceAdapter(val clickListener: SpaceListener) : ListAdapter<Boosters, SpaceAdapter.SpaceHolder>(SpaceDiffCallback()) {
 
 
-
-
     override fun onBindViewHolder(holder: SpaceHolder, position: Int) {
 
         val item = getItem(position)
@@ -34,13 +32,6 @@ class SpaceAdapter(val clickListener: SpaceListener) : ListAdapter<Boosters, Spa
             binding.executePendingBindings()
         }
 
-//        companion object {
-//            fun from(parent: ViewGroup): RecipeHolder {
-//                val layoutInflater = LayoutInflater.from(parent.context)
-//                val binding = ReceptyListBinding.inflate(layoutInflater, parent, false)
-//                return RecipeHolder(binding)
-//            }
-//        }
     }
 
 }

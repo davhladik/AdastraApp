@@ -24,23 +24,12 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 
-
 interface SpaceApiService{
     @GET("cores")
     fun getProperties():
             Deferred<List<Boosters>>
 
 }
-
-//interface SpecificRecipeApiService{
-//    @GET("api/v1/recipes/{id}")
-//    fun getProperty(@Path("id") id:String):
-//            Deferred<SpecificRecipeNetwork>
-//    @POST("api/v1/recipes")
-//    fun uploadProperties(@Body newRecipe: SpecificRecipeUpload):
-//            Deferred<SpecificRecipeNetwork>
-//
-//}
 
 object SpaceApi {
     val retrofitService: SpaceApiService by lazy {

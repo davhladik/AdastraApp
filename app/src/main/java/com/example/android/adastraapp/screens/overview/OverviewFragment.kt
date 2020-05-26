@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.example.android.adastraapp.R
+import com.example.android.adastraapp.database.RocketDatabase
 import com.example.android.adastraapp.databinding.OverviewFragmentBinding
 
 class OverviewFragment : Fragment() {
@@ -26,8 +27,8 @@ class OverviewFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val application = requireNotNull(this.activity).application
-//        val dataSource = RocketDatabase.getInstance(application).rocketDatabaseDao
-        viewModelFactory = OverviewViewModelFactory( application)
+        val dataSource = RocketDatabase.getInstance(application).rocketDatabaseDao
+        viewModelFactory = OverviewViewModelFactory(dataSource, application)
 
         binding = DataBindingUtil.inflate(
             inflater,
@@ -60,11 +61,11 @@ class OverviewFragment : Fragment() {
          * OBserver
          */
 
-//        viewModel.flag.observe(this, Observer { show ->
-//            if (show){
-//                viewModel.initializeThis()
-//            }
-//        })
+        viewModel.flag.observe(this, Observer { show ->
+            if (show){
+                viewModel.initializeThis()
+            }
+        })
 
 
 
