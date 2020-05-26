@@ -1,0 +1,2 @@
+rootProject.name='AdastraApp'
+include ':app'
