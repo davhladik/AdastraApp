@@ -21,7 +21,7 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
     val flag : LiveData<Boolean>
         get() = _flag
 
-    private val _navigateToItemDetail = MutableLiveData<Long>()
+    private val _navigateToItemDetail = MutableLiveData<String>()
     val navigateToItemDetail
         get() = _navigateToItemDetail
 
@@ -48,23 +48,19 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
 
 
     init {
-        getRecipeProperties()
+        getBoosterProperties()
 
         initializeThis()
-
     }
 
-    private fun getRecipeProperties() {
+    private fun getBoosterProperties() {
         coroutineScope.launch {
-
 
             // Get the Deferred object for our Retrofit request
             var getPropertiesDeferred = SpaceApi.retrofitService.getProperties()
             try {
                 // this will run on a thread managed by Retrofit
-                Log.i("chci","download")
                 val listResult = getPropertiesDeferred.await()
-
                 Log.i("chci",listResult.size.toString())
                 insertAll(listResult)
                 _flag.value=true
@@ -76,18 +72,6 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
             }
         }
     }
-
-//    fun isDatabaseEmpty():Boolean{
-//        var dbReadyCheck:Boolean
-//        coroutineScope.launch {
-//            withContext(Dispatchers.IO){
-//                dbReadyCheck = database.getAllRecipes().isNotEmpty()
-//
-//            }
-//
-//        }
-//        return dbReadyCheck
-//    }
 
 
 
@@ -101,22 +85,21 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
         }
     }
 
-    private suspend fun insertAll(recipe: List<Boosters>) {
+    private suspend fun insertAll(boosters: List<Boosters>) {
         withContext(Dispatchers.IO) {
-            database.insertAll(recipe)
+            database.insertAll(boosters)
         }
     }
 
     private suspend fun getAllBoosters(): List<Boosters>? {
         return withContext(Dispatchers.IO) {
-            var allRecipes = database.getAllBoosters()
-            val dbReadyCheck = allRecipes.isEmpty()
-            Log.i("chci",allRecipes.size.toString())
-            Log.i("chci",dbReadyCheck.toString())
+            var allBoosters = database.getAllBoosters()
+            val dbReadyCheck = allBoosters.isEmpty()
+
             if (dbReadyCheck){
-                allRecipes = emptyList()
+                allBoosters = emptyList()
             }
-            allRecipes
+            allBoosters
         }
     }
 
@@ -134,7 +117,7 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
      */
 
 
-    fun onItemClicked(id:Long){
+    fun onItemClicked(id:String){
         _navigateToItemDetail.value=id
     }
 

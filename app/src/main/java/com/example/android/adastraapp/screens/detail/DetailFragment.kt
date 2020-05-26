@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import com.example.android.adastraapp.R
 import com.example.android.adastraapp.database.RocketDatabase
 import com.example.android.adastraapp.databinding.DetailFragmentBinding
@@ -46,13 +47,13 @@ class DetailFragment : Fragment() {
          * Navigation
          */
 
-//        viewModel.navigateToOverview.observe(this, Observer { item ->
-//            item?.let {
-//                val action = OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(recipe)
-//                NavHostFragment.findNavController(this).navigate(action)
-//                viewModel.doneNavigatingToOverviewl()
-//            }
-//        })
+        viewModel.navigateToOverview.observe(this, Observer { item ->
+            if (item) {
+                val action = DetailFragmentDirections.actionDetailFragmentToOverviewFragment()
+                NavHostFragment.findNavController(this).navigate(action)
+                viewModel.doneArrowBackClicked()
+            }
+        })
 
 
         /**
@@ -64,7 +65,7 @@ class DetailFragment : Fragment() {
 //                viewModel.initializeThis()
 //            }
 //        })
-        
+
         return binding.root
     }
 

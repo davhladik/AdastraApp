@@ -202,5 +202,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:tint="@color/justWhite"
+            android:onClick="@{()->viewModel.onArrowBackClicked()}"
+            app:layout_constraintStart_toStartOf="@+id/falcon_image"
+            app:layout_constraintTop_toTopOf="@+id/falcon_image"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

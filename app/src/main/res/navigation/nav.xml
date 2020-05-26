@@ -18,5 +18,13 @@
         android:id="@+id/detailFragment"
         android:name="com.example.android.adastraapp.screens.detail.DetailFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/detail_fragment"/>
+        tools:layout="@layout/detail_fragment">
+        <argument
+            android:name="BoosterID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

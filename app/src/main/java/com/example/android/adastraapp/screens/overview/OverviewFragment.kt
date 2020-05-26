@@ -48,13 +48,13 @@ class OverviewFragment : Fragment() {
          * Navigation
          */
 
-//        viewModel.navigateToItemDetail.observe(this, Observer { item ->
-//            item?.let {
-//                val action = OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(recipe)
-//                NavHostFragment.findNavController(this).navigate(action)
-//                viewModel.doneNavigatingToItemDetail()
-//            }
-//        })
+        viewModel.navigateToItemDetail.observe(this, Observer { item ->
+            item?.let {
+                val action = OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(item)
+                NavHostFragment.findNavController(this).navigate(action)
+                viewModel.doneNavigatingToItemDetail()
+            }
+        })
 
 
         /**
@@ -74,8 +74,8 @@ class OverviewFragment : Fragment() {
          */
 
         val adapter = SpaceAdapter(SpaceListener {
-            boosterId -> Toast.makeText(application,"ID BOOSTERU: $boosterId", Toast.LENGTH_SHORT).show()
-//                boosterId -> viewModel.onItemClicked(boosterId)
+//            boosterId -> Toast.makeText(application,"ID BOOSTERU: $boosterId", Toast.LENGTH_SHORT).show()
+                boosterId -> viewModel.onItemClicked(boosterId)
         })
 
         binding.recyclerView.adapter=adapter
