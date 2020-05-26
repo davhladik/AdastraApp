@@ -27,7 +27,8 @@ class DetailFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = RocketDatabase.getInstance(application).rocketDatabaseDao
-        viewModelFactory = DetailViewModelFactory(dataSource, application)
+        val selectedBooster = DetailFragmentArgs.fromBundle(requireArguments()).boosterID
+        viewModelFactory = DetailViewModelFactory(dataSource,selectedBooster, application)
 
         binding = DataBindingUtil.inflate(
             inflater,

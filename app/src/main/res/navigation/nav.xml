@@ -12,7 +12,11 @@
         tools:layout="@layout/overview_fragment">
         <action
             android:id="@+id/action_overviewFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/swoop_in_right"
+            app:exitAnim="@anim/swoop_out_left"
+            app:popEnterAnim="@anim/swoop_in_left"
+            app:popExitAnim="@anim/swoop_out_right" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -25,6 +29,10 @@
         <action
             android:id="@+id/action_detailFragment_to_overviewFragment"
             app:destination="@id/overviewFragment"
+            app:enterAnim="@anim/swoop_in_left"
+            app:exitAnim="@anim/swoop_out_right"
+            app:popEnterAnim="@anim/swoop_in_right"
+            app:popExitAnim="@anim/swoop_out_left"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:text="B101"
+                    android:text="@{viewModel.selectedSerial}"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
@@ -83,7 +83,7 @@
                             style="@style/textList"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Active" />
+                            android:text="@{viewModel.selectedStatus}"/>
 
 
                     </TableRow>
@@ -104,7 +104,7 @@
                             style="@style/textList"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5" />
+                            android:text="@{viewModel.selectedBlock}" />
                     </TableRow>
 
                     <TableRow
@@ -123,7 +123,7 @@
                             style="@style/textList"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="00/00/0000" />
+                            android:text="@{viewModel.selectedLaunchDate}" />
                     </TableRow>
 
                     <TableRow
@@ -142,7 +142,7 @@
                             style="@style/textList"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1" />
+                            android:text="@{viewModel.selectedReuseCount}"/>
                     </TableRow>
 
 
@@ -195,7 +195,7 @@
                     android:layout_marginStart="@dimen/detail_fragment_margin"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="@dimen/detail_fragment_margin"
-                    android:text="Details Text"
+                    android:text="@{viewModel.selectedDetails}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/details_title" />
