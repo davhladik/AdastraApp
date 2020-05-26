@@ -16,7 +16,7 @@ fun bindRecycleView(recyclerView: RecyclerView, data: List<Boosters>?){
 @BindingAdapter("boosterSerial")
 fun TextView.setBoosterSerial(item: Boosters?) {
     item?.let {
-        text = item.core_serial
+        text = getSerial(item.core_serial)
     }
 }
 

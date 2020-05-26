@@ -18,7 +18,7 @@ interface RocketDatabaseDao {
     fun get(key:String): Boosters?
 
 
-    @Query("SELECT * FROM booster_item ORDER BY core_serial DESC")
+    @Query("SELECT * FROM booster_item ORDER BY core_serial ASC")
     fun getAllBoosters(): List<Boosters>
 
     @Query("DELETE FROM booster_item")

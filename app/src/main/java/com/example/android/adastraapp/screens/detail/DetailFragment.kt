@@ -57,16 +57,6 @@ class DetailFragment : Fragment() {
         })
 
 
-        /**
-         * OBserver
-         */
-
-//        viewModel.flag.observe(this, Observer { show ->
-//            if (show){
-//                viewModel.initializeThis()
-//            }
-//        })
-
         return binding.root
     }
 

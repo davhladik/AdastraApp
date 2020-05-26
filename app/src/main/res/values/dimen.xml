@@ -7,5 +7,5 @@
 
 
     <dimen name="icon_size">20dp</dimen>
-    <dimen name="logo_size">100dp</dimen>
+    <dimen name="logo_size">80dp</dimen>
 </resources>

@@ -5,4 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="justWhite">#FFFFFF</color>
+
+    <color name="backgroundBorderColor">#BFBFBF</color>
 </resources>
