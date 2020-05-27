@@ -39,7 +39,6 @@
             app:layout_constraintVertical_bias="0.0"
             app:listData="@{viewModel.listOfBoosters}"
             app:spanCount="1"
-            tools:itemCount="16"
             tools:listitem="@layout/item_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.example.android.adastraapp.R
 import com.example.android.adastraapp.database.RocketDatabase
 import com.example.android.adastraapp.databinding.OverviewFragmentBinding
@@ -44,22 +43,8 @@ class OverviewFragment : Fragment() {
         binding.viewModel=viewModel
         binding.setLifecycleOwner(this)
 
-
         /**
-         * Navigation
-         */
-
-        viewModel.navigateToItemDetail.observe(this, Observer { item ->
-            item?.let {
-                val action = OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(item)
-                NavHostFragment.findNavController(this).navigate(action)
-                viewModel.doneNavigatingToItemDetail()
-            }
-        })
-
-
-        /**
-         * OBserver
+         * Observer if the data are already loaded from the server
          */
 
         viewModel.flag.observe(this, Observer { show ->
@@ -72,15 +57,27 @@ class OverviewFragment : Fragment() {
          * RecyclerView Adapter
          */
 
+
         val adapter = SpaceAdapter(SpaceListener {
 //            boosterId -> Toast.makeText(application,"ID BOOSTERU: $boosterId", Toast.LENGTH_SHORT).show()
                 boosterId -> viewModel.onItemClicked(boosterId)
         })
         val itemDecor = DividerItemDecoration(application,HORIZONTAL)
-
-
         binding.recyclerView.adapter=adapter
         binding.recyclerView.addItemDecoration(itemDecor)
+
+
+        /**
+         * Navigation
+         */
+
+        viewModel.navigateToItemDetail.observe(this, Observer { item ->
+            item?.let {
+                val action = OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(item)
+                NavHostFragment.findNavController(this).navigate(action)
+                viewModel.doneNavigatingToItemDetail()
+            }
+        })
 
         return binding.root
     }

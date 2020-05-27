@@ -12,7 +12,6 @@ import retrofit2.http.*
 private const val BASE_URL = "https://api.spacexdata.com/v3/"
 
 
-
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()

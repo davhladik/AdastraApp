@@ -70,20 +70,20 @@ fun getLaunchDate(date: String): Spanned {
 
 }
 
-fun getReuseCount(count: Int): Spanned {
-
-    val sb = StringBuilder()
-    sb.apply{
-        append("Reuse count: $count")
-    }
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        return Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY)
-    } else {
-        return HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
-    }
-
-}
+//fun getReuseCount(count: Int): Spanned {
+//
+//    val sb = StringBuilder()
+//    sb.apply{
+//        append("Reuse count: $count")
+//    }
+//
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//        return Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY)
+//    } else {
+//        return HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
+//    }
+//
+//}
 
 
 fun detailBoosterSerial(item: Boosters?):Spanned {
@@ -130,9 +130,16 @@ fun detailBoosterReuseCount(item: Boosters?):Spanned {
 
 fun detailBoosterBlock(item: Boosters?):Spanned {
     val sb = StringBuilder()
+
     item?.let {
-        sb.apply {
-            append(item.block)
+        if (item.block == null){
+            sb.apply {
+                append("-")
+            }
+        }else{
+            sb.apply {
+                append(item.block)
+            }
         }
     }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -145,34 +152,25 @@ fun detailBoosterBlock(item: Boosters?):Spanned {
 fun detailBoosterLaunchDate(item: Boosters?):Spanned {
 
     val sb = StringBuilder()
+    item?.let {
+        val date = (item.original_launch ?: "NONE")
 
-    val date = (item!!.original_launch ?: "NONE")
+        if (date != "NONE"){
+            val year = date.subSequence(0,4)
+            val month = date.subSequence(5,7)
+            val day = date.subSequence(8,10)
 
-    if (date != "NONE"){
-        val year = date.subSequence(0,4)
-        val month = date.subSequence(5,7)
-        val day = date.subSequence(8,10)
-
-        val hour = date.subSequence(11,13)
-        val min = date.subSequence(14,16)
-
-        item?.let {
-            sb.apply {
-                append("$day.$month.$year  $hour:$min")
-
-            }
-        }
-    }else{
-        item?.let {
-            sb.apply {
-                append("NONE")
-            }
+            val hour = date.subSequence(11,13)
+            val min = date.subSequence(14,16)
+                sb.apply {
+                    append("$day.$month.$year  $hour:$min")
+                }
+        }else{
+                sb.apply {
+                    append("NONE")
+                }
         }
     }
-
-
-
-
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         return Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY)
@@ -184,8 +182,14 @@ fun detailBoosterLaunchDate(item: Boosters?):Spanned {
 fun detailBoosterDetails(item: Boosters?):Spanned {
     val sb = StringBuilder()
     item?.let {
-        sb.apply {
-            append(item.details)
+        if (item.details == null){
+            sb.apply {
+                append("-")
+            }
+        }else{
+            sb.apply {
+                append(item.details)
+            }
         }
     }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

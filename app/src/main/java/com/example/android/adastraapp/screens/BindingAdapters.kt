@@ -27,12 +27,12 @@ fun TextView.setBoosterStatus(item: Boosters?) {
     }
 }
 
-@BindingAdapter("boosterReuseCount")
-fun TextView.setBoosterReuseCount(item: Boosters?) {
-    item?.let {
-        text = getReuseCount(item.reuse_count)
-    }
-}
+//@BindingAdapter("boosterReuseCount")
+//fun TextView.setBoosterReuseCount(item: Boosters?) {
+//    item?.let {
+//        text = getReuseCount(item.reuse_count)
+//    }
+//}
 
 @BindingAdapter("boosterOriginalLaunch")
 fun TextView.setBoosterOriginalLaunch(item: Boosters?) {

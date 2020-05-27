@@ -11,7 +11,7 @@ import com.example.android.adastraapp.database.RocketDatabaseDao
 import com.example.android.adastraapp.network.SpaceApi
 import kotlinx.coroutines.*
 import java.lang.Exception
-import kotlin.reflect.jvm.internal.impl.load.java.lazy.descriptors.DeclaredMemberIndex
+
 
 class OverviewViewModel(val database: RocketDatabaseDao, application: Application) : AndroidViewModel(application){
 
@@ -26,7 +26,9 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
     val navigateToItemDetail
         get() = _navigateToItemDetail
 
-
+    /**
+     * Variable for showing the list of data in recyclerview
+     */
     val listOfBoosters = MutableLiveData<List<Boosters>>()
 
 
@@ -39,7 +41,7 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
 
     init {
         getBoosterProperties()
-
+        //After start it will check is the database is empty, if not -> it will load the data from database
         initializeThis()
     }
 
@@ -51,7 +53,6 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
             try {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()
-                Log.i("chci",listResult.size.toString())
                 insertAll(listResult)
                 _flag.value=true
 
@@ -111,10 +112,9 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
         _navigateToItemDetail.value=null
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
+    /**
+     * Function for implementing delete button
+     */
 
     fun onClear() {
         coroutineScope.launch {
@@ -128,5 +128,13 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
         onClear()
     }
 
+    /**
+     * Canceling coroutines
+     */
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 
 }

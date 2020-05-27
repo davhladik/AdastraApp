@@ -56,6 +56,9 @@ class DetailViewModel(val database: RocketDatabaseDao,boosterId: String="", appl
         initializeThis(boosterId)
     }
 
+    /**
+     * Database functions
+     */
 
     private fun initializeThis(id:String) {
         coroutineScope.launch {
@@ -84,5 +87,14 @@ class DetailViewModel(val database: RocketDatabaseDao,boosterId: String="", appl
 
     fun doneArrowBackClicked(){
         _navigateToOverview.value=false
+    }
+
+    /**
+     * Canceling coroutines
+     */
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }
