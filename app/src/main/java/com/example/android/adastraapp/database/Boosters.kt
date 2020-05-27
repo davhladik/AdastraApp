@@ -2,6 +2,7 @@ package com.example.android.adastraapp.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.json.JSONArray
 
 @Entity(tableName = "booster_item")
 data class Boosters(

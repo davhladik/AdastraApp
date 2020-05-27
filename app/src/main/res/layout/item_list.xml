@@ -28,7 +28,6 @@
             android:layout_marginStart="@dimen/activity_vertical_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="16dp"
-            android:fadingEdge="horizontal|vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,6 +38,7 @@
             style="@style/textList"
             android:layout_marginStart="24dp"
             android:text="B101"
+            android:textStyle="bold"
             app:boosterSerial="@{boosters}"
             app:layout_constraintStart_toEndOf="@+id/logo_image"
             app:layout_constraintTop_toTopOf="@+id/logo_image" />
@@ -75,5 +75,15 @@
             app:boosterReuseCount="@{boosters}"
             app:layout_constraintStart_toStartOf="@+id/status_text"
             app:layout_constraintTop_toBottomOf="@+id/status_text" />
+
+        <ImageView
+            android:id="@+id/into_detail_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/logo_image"
+            app:layout_constraintEnd_toEndOf="@+id/reuse_count_text"
+            app:layout_constraintTop_toBottomOf="@+id/reuse_count_text"
+            app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

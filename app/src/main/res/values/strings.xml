@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AdastraApp</string>
+    <string name="details"><b>Details</b></string>
+    <string name="reuse_count">Reuse count</string>
+    <string name="original_launch_date">Original launch date</string>
+    <string name="block_type">Block type</string>
+    <string name="status">Status</string>
+    <string name="spacex_cores">SpaceX Cores</string>
 </resources>

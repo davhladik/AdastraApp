@@ -11,6 +11,7 @@ import com.example.android.adastraapp.database.RocketDatabaseDao
 import com.example.android.adastraapp.network.SpaceApi
 import kotlinx.coroutines.*
 import java.lang.Exception
+import kotlin.reflect.jvm.internal.impl.load.java.lazy.descriptors.DeclaredMemberIndex
 
 class OverviewViewModel(val database: RocketDatabaseDao, application: Application) : AndroidViewModel(application){
 
@@ -26,9 +27,9 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
         get() = _navigateToItemDetail
 
 
-    private val _properties = MutableLiveData<List<Boosters>>()
-    val properties : LiveData<List<Boosters>>
-        get() = _properties
+//    private val _properties = MutableLiveData<List<Boosters>>()
+//    val properties : LiveData<List<Boosters>>
+//        get() = _properties
 
 
     private val _dbCheck = MutableLiveData<Boolean>()
@@ -65,10 +66,8 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
                 insertAll(listResult)
                 _flag.value=true
 
-//                _properties.value = listResult
             } catch (e: Exception) {
                 Log.i("chci","error")
-                _properties.value = ArrayList()
             }
         }
     }

@@ -18,7 +18,7 @@
             style="@style/titleStyle"
             android:layout_width="0dp"
             android:layout_marginTop="16dp"
-            android:text="SpaceX Cores"
+            android:text="@string/spacex_cores"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,17 +42,5 @@
             tools:itemCount="16"
             tools:listitem="@layout/item_list" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="22dp"
-            android:text="delete"
-            android:onClick="@{()->viewModel.wantToDeleteAll()}"
-            app:layout_constraintBottom_toTopOf="@+id/recycler_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
