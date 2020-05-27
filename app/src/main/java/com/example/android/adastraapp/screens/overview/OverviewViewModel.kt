@@ -57,7 +57,7 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
                 _flag.value=true
 
             } catch (e: Exception) {
-                Log.i("chci","error")
+                Log.i("TAG","error")
             }
         }
     }
