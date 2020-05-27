@@ -27,17 +27,6 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
         get() = _navigateToItemDetail
 
 
-//    private val _properties = MutableLiveData<List<Boosters>>()
-//    val properties : LiveData<List<Boosters>>
-//        get() = _properties
-
-
-    private val _dbCheck = MutableLiveData<Boolean>()
-    val dbCheck : LiveData<Boolean>
-        get() = _dbCheck
-
-
-
     val listOfBoosters = MutableLiveData<List<Boosters>>()
 
 
@@ -71,7 +60,6 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
             }
         }
     }
-
 
 
     /**
@@ -109,8 +97,6 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
     }
 
 
-
-
     /**
      * Navigation functions
      */
@@ -135,7 +121,6 @@ class OverviewViewModel(val database: RocketDatabaseDao, application: Applicatio
             // Clear the database table.
             clear()
             Toast.makeText(context, "All data deleted!", Toast.LENGTH_SHORT).show()
-
         }
     }
 

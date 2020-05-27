@@ -6,4 +6,11 @@
     <string name="block_type">Block type</string>
     <string name="status">Status</string>
     <string name="spacex_cores">SpaceX Cores</string>
+
+    //Menu strings
+    <string name="show_all">All</string>
+    <string name="show_active">Active</string>
+    <string name="show_inactive">Inactive</string>
+    <string name="show_lost">Lost</string>
+    <string name="see_more">See more</string>
 </resources>

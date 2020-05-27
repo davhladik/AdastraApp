@@ -41,8 +41,8 @@ fun getLaunchDate(date: String): Spanned {
     val sb = StringBuilder()
     if (date == "NONE"){
         sb.apply {
-            append("Original launch date")
-            append("<br>")
+            append("Launch date: ")
+//            append("<br>")
             append(date)
         }
     }else{
@@ -54,11 +54,9 @@ fun getLaunchDate(date: String): Spanned {
         val min = date.subSequence(14,16)
 
         sb.apply{
-            append("Original launch date")
-            append("<br>")
+            append("Launch date: ")
+//            append("<br>")
             append("$day.$month.$year")
-            append("<br>")
-            append("$hour:$min")
         }
     }
 

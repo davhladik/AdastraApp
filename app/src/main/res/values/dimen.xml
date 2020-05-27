@@ -8,6 +8,9 @@
 
     <dimen name="icon_size">20dp</dimen>
     <dimen name="logo_size">80dp</dimen>
+    <dimen name="logo_height">76dp</dimen>
+    <dimen name="logo_width">100dp</dimen>
+    <dimen name="detail_material_margin">20dp</dimen>
 
     <dimen name="table_row_height">30dp</dimen>
 </resources>

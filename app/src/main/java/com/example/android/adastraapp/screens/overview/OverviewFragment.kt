@@ -1,15 +1,16 @@
 package com.example.android.adastraapp.screens.overview
 
+import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android.adastraapp.R
 import com.example.android.adastraapp.database.RocketDatabase
 import com.example.android.adastraapp.databinding.OverviewFragmentBinding
@@ -67,8 +68,6 @@ class OverviewFragment : Fragment() {
             }
         })
 
-
-
         /**
          * RecyclerView Adapter
          */
@@ -77,11 +76,17 @@ class OverviewFragment : Fragment() {
 //            boosterId -> Toast.makeText(application,"ID BOOSTERU: $boosterId", Toast.LENGTH_SHORT).show()
                 boosterId -> viewModel.onItemClicked(boosterId)
         })
+        val itemDecor = DividerItemDecoration(application,HORIZONTAL)
+
 
         binding.recyclerView.adapter=adapter
-
+        binding.recyclerView.addItemDecoration(itemDecor)
 
         return binding.root
     }
+
+
+
+
 
 }

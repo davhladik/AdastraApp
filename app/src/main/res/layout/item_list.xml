@@ -17,17 +17,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/my_border_white"
-        android:onClick="@{() -> clickListener.onClick(boosters)}">
+        android:layout_height="100dp"
+        android:onClick="@{() -> clickListener.onClick(boosters)}"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/logo_image"
-            android:layout_width="@dimen/logo_size"
-            android:layout_height="@dimen/logo_size"
-            android:layout_marginStart="@dimen/activity_vertical_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="16dp"
+            android:layout_width="@dimen/logo_width"
+            android:layout_height="@dimen/logo_height"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +37,7 @@
         <TextView
             android:id="@+id/core_serial_text"
             style="@style/textList"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
             android:text="B101"
             android:textStyle="bold"
             app:boosterSerial="@{boosters}"
@@ -48,11 +49,11 @@
             style="@style/textList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
             android:text="Status"
             app:boosterStatus="@{boosters}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/core_serial_text"
-            app:layout_constraintStart_toEndOf="@+id/core_serial_text" />
+            app:layout_constraintStart_toStartOf="@+id/launch_date_text"
+            app:layout_constraintTop_toBottomOf="@+id/core_serial_text" />
 
         <TextView
             android:id="@+id/launch_date_text"
@@ -60,30 +61,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Original launch date"
+            android:text="Launch date"
             app:boosterOriginalLaunch="@{boosters}"
             app:layout_constraintStart_toStartOf="@+id/core_serial_text"
-            app:layout_constraintTop_toBottomOf="@+id/core_serial_text" />
-
-        <TextView
-            android:id="@+id/reuse_count_text"
-            style="@style/textList"
-            android:layout_width="wrap_content"
-            android:layout_height="19dp"
-            android:layout_marginTop="8dp"
-            android:text="Reuse Count"
-            app:boosterReuseCount="@{boosters}"
-            app:layout_constraintStart_toStartOf="@+id/status_text"
             app:layout_constraintTop_toBottomOf="@+id/status_text" />
 
         <ImageView
             android:id="@+id/into_detail_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/logo_image"
-            app:layout_constraintEnd_toEndOf="@+id/reuse_count_text"
-            app:layout_constraintTop_toBottomOf="@+id/reuse_count_text"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/core_serial_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/core_serial_text"
             app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
+
+        <TextView
+            android:id="@+id/see_more_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/see_more"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/into_detail_arrow"
+            app:layout_constraintEnd_toStartOf="@+id/into_detail_arrow"
+            app:layout_constraintTop_toTopOf="@+id/into_detail_arrow" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
